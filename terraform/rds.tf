@@ -1,7 +1,7 @@
 resource "aws_security_group" "rds_sg" {
-  name        = "rds_security_group"
-  description = "Security group for RDS PostgreSQL"
-  vpc_id      = data.aws_vpc.default.idx
+  name        = "techchallenge_rds_security_group"
+  description = "Security group for RDS PostgreSQL from the TechChallenge APP"
+  vpc_id      = data.aws_vpc.default.id
 
   ingress {
     from_port       = 5432
@@ -19,17 +19,17 @@ resource "aws_security_group" "rds_sg" {
 }
 
 resource "aws_db_subnet_group" "rds_subnet_group" {
-  name       = "rds-subnet-group"
+  name       = "techchallenge_rds_subnet_group"
   subnet_ids = [for subnet in data.aws_subnet.selected_subnets : subnet.id]
 }
 
 resource "aws_db_instance" "postgres" {
   allocated_storage      = 10
-  db_name                = local.db_credentials["db_name"]
   engine                 = "postgres"
   engine_version         = "13"
   instance_class         = "db.t3.micro"
   identifier             = "techchallengedb"
+  db_name                = local.db_credentials["db_name"]
   username               = local.db_credentials["username"]
   password               = local.db_credentials["password"]
   parameter_group_name   = "default.postgres13"
