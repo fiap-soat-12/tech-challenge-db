@@ -1,4 +1,4 @@
-name: Terraform Deploy RDS to AWS
+name: Terraform DB Deploy to AWS
 
 on:
   push:
@@ -9,7 +9,9 @@ on:
       - main
 
 jobs:
-  terraform:
+  # Job para verificação do terraform do banco de dados em pull requests e merge para a main e push para RDS na main 
+  db:
+    name: Terraform Verification Push DB to RDS
     runs-on: ubuntu-latest
 
     permissions:
@@ -34,18 +36,19 @@ jobs:
           terraform_version: 1.4.0
 
       # Inicializar, validar e aplicar o Terraform para o diretório terraform
-      - name: Initialize Terraform for Rds
+      - name: Initialize Terraform for DB
         working-directory: terraform
         run: terraform init
 
-      - name: Validate Terraform for Rds
+      - name: Validate Terraform for DB
         working-directory: terraform
         run: terraform validate
 
-      - name: Plan Terraform for Rds
+      - name: Plan Terraform for DB
         working-directory: terraform
-        run: terraform plan -out=rds
+        run: terraform plan -out=db
 
-      - name: Apply Terraform for Rds
+      - name: Apply Terraform for DB
+        if: github.ref == 'refs/heads/main' # Executa apenas na branch main
         working-directory: terraform
-        run: terraform apply -auto-approve rds
+        run: terraform apply -auto-approve db
