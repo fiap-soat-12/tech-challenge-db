@@ -11,7 +11,7 @@ on:
 jobs:
   # Job para verificação do terraform do banco de dados em pull requests e merge para a main e push para RDS na main 
   db:
-    name: Terraform Verification Push DB to RDS
+    name: Terraform Verification and Push DB to RDS
     runs-on: ubuntu-latest
 
     permissions:
