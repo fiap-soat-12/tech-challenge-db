@@ -1,13 +1,13 @@
 resource "aws_security_group" "rds_sg" {
   name        = "techchallenge_rds_security_group"
   description = "Security group for RDS PostgreSQL from the TechChallenge APP"
-  vpc_id      = data.aws_vpc.default.id
+  vpc_id      = aws_vpc.vpc.id
 
   ingress {
-    from_port       = 5432
-    to_port         = 5432
-    protocol        = "tcp"
-    security_groups = [data.aws_eks_cluster.eks_cluster.vpc_config[0].cluster_security_group_id]
+    from_port   = 5432
+    to_port     = 5432
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {
@@ -20,7 +20,7 @@ resource "aws_security_group" "rds_sg" {
 
 resource "aws_db_subnet_group" "rds_subnet_group" {
   name       = "techchallenge_rds_subnet_group"
-  subnet_ids = [for subnet in data.aws_subnet.selected_subnets : subnet.id]
+  subnet_ids = [for subnet in aws_subnet.private_subnet : subnet.id]
 }
 
 resource "aws_db_instance" "postgres" {
