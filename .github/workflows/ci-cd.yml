@@ -7,11 +7,12 @@ on:
   pull_request:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   # Job para verificação do terraform do banco de dados em pull requests e merge para a main e push para RDS na main 
   db:
-    name: Terraform Verification and Push DB to RDS
+    name: Terraform Verification and Push DB PostgreSql to RDS
     runs-on: ubuntu-latest
 
     permissions:
@@ -45,6 +46,7 @@ jobs:
         run: terraform validate
 
       - name: Plan Terraform for DB
+        if: github.ref == 'refs/heads/main' # Executa apenas na branch main
         working-directory: terraform
         run: terraform plan -out=db
 
