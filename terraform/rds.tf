@@ -1,13 +1,13 @@
 resource "aws_security_group" "rds_sg" {
-  name        = "techchallenge_rds_security_group"
+  name        = "tech-challenge-rds-sg"
   description = "Security group for RDS PostgreSQL from the TechChallenge APP"
   vpc_id      = data.aws_vpc.selected_vpc.id
 
   ingress {
-    from_port   = 5432
-    to_port     = 5432
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    from_port = 5432
+    to_port   = 5432
+    protocol  = "tcp"
+    self      = true
   }
 
   egress {
@@ -28,7 +28,7 @@ resource "aws_db_instance" "postgres" {
   engine                 = "postgres"
   engine_version         = "13"
   instance_class         = "db.t3.micro"
-  identifier             = "techchallengedb"
+  identifier             = var.db_instance_identifier
   db_name                = local.db_credentials["db_name"]
   username               = local.db_credentials["username"]
   password               = local.db_credentials["password"]

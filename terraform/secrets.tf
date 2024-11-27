@@ -8,7 +8,7 @@ variable "db_credentials" {
 }
 
 resource "aws_secretsmanager_secret" "db_credentials_secret" {
-  name        = "techchallenge_db_credentials"
+  name        = "tech-challenge-db-credentials"
   description = "Database credentials for PostgreSQL RDS Instance from Techchallenge APP"
 
   recovery_window_in_days = 0
