@@ -49,10 +49,10 @@ Este repositório é responsável criar o banco de dados no RDS.
   2. Certificar que o `aws cli` está instalado e configurado com as credenciais da sua conta AWS;
   ![aws-cli-version](./assets/aws-cli-version.png)
 
-  3. Acessar a pasta `terraform` que contém os arquivos que irão criar a VPC;
+  3. Acessar a pasta `terraform` que contém os arquivos que irão criar o banco de dados;
   4. Inicializar o Terraform no projeto `terraform init`;
   5. Verificar que o script do Terraform é valido rodando o comando `terraform validate`;
   6. Executar o comando `terraform plan` para executar o planejamento da execução/implementação;
-  7. Executar o comando `terraform apply` para criar a infra dentro do cluster;
-  8. Após a execução do Terraform finalizar, verificar se o banco subiu corretamente na AWS;
+  7. Executar o comando `terraform apply` para criar o banco de dados;
+  8. Após a execução do Terraform finalizar, verificar se o banco de dados subiu corretamente na AWS;
   ![db-aws-image](./assets/db-aws-image.png)
