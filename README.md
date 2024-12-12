@@ -33,7 +33,6 @@ Este repositório é responsável criar o banco de dados no RDS.
 
 ### Desenvolvimento
 
-- **[Kubernetes](https://kubernetes.io/pt-br/docs/home/)**: Documentação oficial do Kubernetes.
 - **[Terraform](https://www.terraform.io/)**: Site oficial do Terraform.
 - **[AWS](https://aws.amazon.com/pt/)**: Site oficial da AWS.
 - **[PostgreSQL](https://www.postgresql.org/docs/)**: Documentação oficial do PostgreSQL.
