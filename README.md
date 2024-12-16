@@ -16,7 +16,7 @@ Este repositório é responsável criar o banco de dados no RDS.
 
 <div align="center">
 
-![AWSRDS](https://img.shields.io/badge/AWS%20RDS-312DB2.svg?style=for-the-badge&logoColor=white)
+![AWSRDS](https://img.shields.io/badge/AWS%20RDS-527FFF.svg?style=for-the-badge&logo=Amazon-RDS&logoColor=white)
 ![AWSSecretManager](https://img.shields.io/badge/AWS%20Secrets%20Manager-DD344C.svg?style=for-the-badge&logo=AWS-Secrets-Manager&logoColor=white)
 ![GithubActions](https://img.shields.io/badge/GitHub%20Actions-2088FF.svg?style=for-the-badge&logo=GitHub-Actions&logoColor=white)
 ![Terraform](https://img.shields.io/badge/Terraform-7B42BC?style=for-the-badge&logo=terraform&logoColor=white)
