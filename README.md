@@ -10,19 +10,50 @@
 
 ## 💻 Descrição
 
-Este repositório é responsável criar o banco de dados no RDS.
+Este repositório é responsável por provisionar e configurar uma instância do **Amazon RDS** na **AWS** com o banco de dados **PostgreSQL**, garantindo a criação e o gerenciamento seguro das configurações relacionadas.
 
 ## 🛠 Tecnologias Utilizadas
 
 <div align="center">
 
-![AWSRDS](https://img.shields.io/badge/AWS%20RDS-527FFF.svg?style=for-the-badge&logo=Amazon-RDS&logoColor=white)
-![AWSSecretManager](https://img.shields.io/badge/AWS%20Secrets%20Manager-DD344C.svg?style=for-the-badge&logo=AWS-Secrets-Manager&logoColor=white)
-![GithubActions](https://img.shields.io/badge/GitHub%20Actions-2088FF.svg?style=for-the-badge&logo=GitHub-Actions&logoColor=white)
+![AWS RDS](https://img.shields.io/badge/AWS%20RDS-527FFF.svg?style=for-the-badge&logo=Amazon-RDS&logoColor=white)
+![AWS SecretManager](https://img.shields.io/badge/AWS%20Secrets%20Manager-DD344C.svg?style=for-the-badge&logo=AWS-Secrets-Manager&logoColor=white)
+![Github Actions](https://img.shields.io/badge/GitHub%20Actions-2088FF.svg?style=for-the-badge&logo=GitHub-Actions&logoColor=white)
 ![Terraform](https://img.shields.io/badge/Terraform-7B42BC?style=for-the-badge&logo=terraform&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1.svg?style=for-the-badge&logo=PostgreSQL&logoColor=white)
 
 </div>
+
+### 🛠️ Funcionalidades Principais:
+
+- **Provisionamento do RDS**:
+  - Criação de uma instância do **Amazon RDS** configurada com **PostgreSQL**.
+
+- **Gerenciamento de Credenciais**:
+  - Armazena com segurança o **usuário**, a **senha** e o **nome do banco de dados** no **AWS Secrets Manager**.
+
+- **Armazenamento do Endpoint**:
+  - Salva o **endpoint** do RDS (link do banco de dados) no **AWS SSM Parameter Store** para facilitar o acesso seguro.
+
+## Arquitetura
+
+### 🛢️Banco de dados
+
+- **PostgreSQL:**
+  - Preferência da comunidade para projetos modernos.
+  - Banco de dados open-source que possui licença livre.
+  - Consultas SQL complexas e extensíveis.
+  - Suporte a índices personalizados e otimizações de desempenho.
+
+### Infraestrutura de banco gerenciado
+
+- **AWS RDS (Relational Database Service):**
+  - Configuração gerenciada de instâncias PostgreSQL.
+  - Backups automáticos e restauração simplificada.
+
+### Diagrama entidade relacionamento
+
+![Diagrama entidade relacionamento](./assets/diagrama-er.png)
 
 ## ⚙️ Configuração
 
@@ -42,7 +73,7 @@ Este repositório é responsável criar o banco de dados no RDS.
 ### Subindo o DB
 
   Caso deseje subir o banco no RDS, basta seguir os seguintes passos:
-  
+
   1. Certificar que o Terraform esteja instalado executando o comando `terraform --version`;
   ![terraform-version](./assets/terraform-version.png)
 
