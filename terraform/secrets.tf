@@ -1,27 +1,56 @@
-variable "db_credentials" {
+variable "tc_order_db_credentials" {
   type = map(string)
   default = {
     username = "postgres"
     password = "postgres"
-    db_name  = "techchallenge"
+    db_name  = "tc_order_db"
   }
 }
 
-resource "aws_secretsmanager_secret" "db_credentials_secret" {
-  name        = "tech-challenge-db-credentials"
-  description = "Database credentials for PostgreSQL RDS Instance from Techchallenge APP"
+variable "tc_cook_db_credentials" {
+  type = map(string)
+  default = {
+    username = "postgres"
+    password = "postgres"
+    db_name  = "tc_cook_db"
+  }
+}
+
+resource "aws_secretsmanager_secret" "tc_order_db_credentials_secret" {
+  name        = "tech-challenge-order-db-credentials"
+  description = "Database credentials for Order db PostgreSQL RDS Instance from Techchallenge APP"
 
   recovery_window_in_days = 0
 }
 
-resource "aws_secretsmanager_secret_version" "db_credentials_secret_version" {
-  secret_id     = aws_secretsmanager_secret.db_credentials_secret.id
-  secret_string = jsonencode(var.db_credentials)
+resource "aws_secretsmanager_secret" "tc_cook_db_credentials_secret" {
+  name        = "tech-challenge-cook-db-credentials"
+  description = "Database credentials for Cook db PostgreSQL RDS Instance from Techchallenge APP"
+
+  recovery_window_in_days = 0
+}
+
+resource "aws_secretsmanager_secret_version" "tc_order_db_credentials_secret_version" {
+  secret_id     = aws_secretsmanager_secret.tc_order_db_credentials_secret.id
+  secret_string = jsonencode(var.tc_order_db_credentials)
 
 }
 
-data "aws_secretsmanager_secret_version" "db_credentials_secret_version" {
-  secret_id = aws_secretsmanager_secret.db_credentials_secret.id
+resource "aws_secretsmanager_secret_version" "tc_cook_db_credentials_secret_version" {
+  secret_id     = aws_secretsmanager_secret.tc_cook_db_credentials_secret.id
+  secret_string = jsonencode(var.tc_cook_db_credentials)
 
-  depends_on = [aws_secretsmanager_secret_version.db_credentials_secret_version]
 }
+
+data "aws_secretsmanager_secret_version" "tc_order_db_credentials_secret_version" {
+  secret_id = aws_secretsmanager_secret.tc_order_db_credentials_secret.id
+
+  depends_on = [aws_secretsmanager_secret_version.tc_order_db_credentials_secret_version]
+}
+
+data "aws_secretsmanager_secret_version" "tc_cook_db_credentials_secret_version" {
+  secret_id = aws_secretsmanager_secret.tc_cook_db_credentials_secret.id
+
+  depends_on = [aws_secretsmanager_secret_version.tc_cook_db_credentials_secret_version]
+}
+
