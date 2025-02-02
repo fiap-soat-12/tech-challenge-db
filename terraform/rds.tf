@@ -68,3 +68,25 @@ resource "aws_db_instance" "tc_cook_db_postgres" {
     aws_secretsmanager_secret_version.tc_cook_db_credentials_secret_version
   ]
 }
+
+resource "aws_db_instance" "sonarqube_db_postgres" {
+  allocated_storage      = 10
+  engine                 = "postgres"
+  engine_version         = "13"
+  instance_class         = "db.t3.micro"
+  identifier             = "sonarqube-db"
+  db_name                = local.sonarqube_db_credentials["db_name"]
+  username               = local.sonarqube_db_credentials["username"]
+  password               = local.sonarqube_db_credentials["password"]
+  parameter_group_name   = "default.postgres13"
+  publicly_accessible    = false
+  vpc_security_group_ids = [aws_security_group.rds_sg.id]
+  db_subnet_group_name   = aws_db_subnet_group.rds_subnet_group.name
+
+  skip_final_snapshot = true
+
+  depends_on = [
+    aws_security_group.rds_sg,
+    aws_db_subnet_group.rds_subnet_group,
+  ]
+}
