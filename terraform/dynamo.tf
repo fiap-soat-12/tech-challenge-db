@@ -5,15 +5,9 @@ resource "aws_dynamodb_table" "tc_payment_db" {
   write_capacity = 1
 
   hash_key = "id"
-  range_key = "date"
 
   attribute {
     name = "id"
-    type = "S"
-  }
-
-  attribute {
-    name = "date"
     type = "S"
   }
 }
