@@ -84,6 +84,7 @@ Este repositório é responsável por provisionar e configurar duas instâncias 
 - **[Terraform](https://www.terraform.io/)**: Site oficial do Terraform.
 - **[AWS](https://aws.amazon.com/pt/)**: Site oficial da AWS.
 - **[PostgreSQL](https://www.postgresql.org/docs/)**: Documentação oficial do PostgreSQL.
+- **[DynamoDB](https://aws.amazon.com/pt/dynamodb/)**: Site oficial da DynamoDB.
 
 ## 🚀 Execução
 
